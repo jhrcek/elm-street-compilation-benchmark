@@ -25,12 +25,13 @@ source-repository head
 library
     ghc-options: -Wall
     exposed-modules:
-        Simple.One
-        Simple.Ten
-        Simple.Fifty
-        Record.One
-        Record.Ten
-        Record.Fifty
+        Record01
+        Record02
+        Record04
+        Record08
+        Record16
+        Record32
+
     hs-source-dirs:   src
     other-modules:    Paths_elm_street_compilation_benchmark
     default-language: Haskell2010
