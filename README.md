@@ -22,58 +22,49 @@ But having to wait over a minute for module with les that 20 data types seems ba
 
 ```bash
 $ ./dump-timings.hs $(stack path --dist-dir)/build/src
-Total time: 401.30s
-221.96s    Record32
-     143.13s    Simplifier
-     38.23s    Specialise
-     25.48s    CodeGen
-     5.70s    Demand analysis
-     4.49s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
-     2.03s    Renamer/typechecker
-     1.78s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = False})
-     0.71s    CoreTidy
-     0.36s    Worker Wrapper binds
-95.92s    Record16
-     66.27s    Simplifier
-     11.99s    CodeGen
-     7.88s    Specialise
-     4.57s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
-     2.70s    Demand analysis
-     1.01s    Renamer/typechecker
-     0.93s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = False})
-     0.35s    CoreTidy
-     0.22s    Worker Wrapper binds
-45.46s    Record8
-     34.03s    Simplifier
-     6.12s    CodeGen
-     1.57s    Specialise
+Total time: 206.81s
+104.55s    Record32
+     81.19s    Simplifier
+     9.68s    CodeGen
+     4.79s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
+     4.33s    Specialise
+     2.88s    Demand analysis
+     0.62s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = False})
+     0.52s    Renamer/typechecker
+     0.39s    CoreTidy
+     0.13s    Worker Wrapper binds
+52.03s    Record16
+     43.46s    Simplifier
+     4.08s    CodeGen
      1.47s    Demand analysis
-     1.16s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
-     0.46s    Renamer/typechecker
-     0.37s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = False})
-     0.24s    CoreTidy
-21.60s    Record4
-     15.80s    Simplifier
-     3.51s    CodeGen
-     0.81s    Demand analysis
-     0.56s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
-     0.42s    Specialise
-     0.21s    Renamer/typechecker
-     0.14s    CoreTidy
-     0.13s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = False})
-10.00s    Record2
-     6.98s    Simplifier
-     1.56s    CodeGen
-     0.86s    Demand analysis
-     0.26s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
-     0.13s    Specialise
-     0.11s    Renamer/typechecker
-6.36s    Record1
-     4.50s    Simplifier
-     0.79s    CodeGen
-     0.37s    Renamer/typechecker
-     0.36s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
-     0.23s    Demand analysis
+     1.25s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
+     0.94s    Specialise
+     0.34s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = False})
+     0.29s    Renamer/typechecker
+     0.16s    CoreTidy
+25.59s    Record08
+     20.55s    Simplifier
+     2.19s    CodeGen
+     1.47s    Demand analysis
+     0.68s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
+     0.28s    Specialise
+     0.17s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = False})
+     0.14s    Renamer/typechecker
+13.76s    Record04
+     11.49s    Simplifier
+     1.18s    CodeGen
+     0.48s    Demand analysis
+     0.33s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
+6.95s    Record02
+     5.78s    Simplifier
+     0.58s    CodeGen
+     0.24s    Demand analysis
+     0.18s    Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True})
+3.92s    Record01
+     2.81s    Simplifier
+     0.33s    Renamer/typechecker
+     0.31s    Demand analysis
+     0.30s    CodeGen
 ```
 
 Here are some raw numbers from the dump file (Produced via -ddump-timings ghc flag)
@@ -81,30 +72,30 @@ Here are some raw numbers from the dump file (Produced via -ddump-timings ghc fl
 
 ```bash
 $ cat $(stack path --dist-dir)/build/src/Record32.dump-timings
-Parser [Record32]: alloc=7423936 time=2.573
-Renamer/typechecker [Record32]: alloc=2903312240 time=1746.190
-Desugar [Record32]: alloc=32295152 time=17.529
-Simplifier [Record32]: alloc=6906312008 time=7312.088
-Specialise [Record32]: alloc=58866479752 time=35662.845
-Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = False}) [Record32]: alloc=1206695920 time=1397.087
-Simplifier [Record32]: alloc=19411064584 time=18941.474
-Simplifier [Record32]: alloc=21620186632 time=23330.186
-Simplifier [Record32]: alloc=22010879072 time=26278.089
-Float inwards [Record32]: alloc=12416 time=0.009
-Called arity analysis [Record32]: alloc=13576 time=0.019
-Simplifier [Record32]: alloc=19022974008 time=21679.064
-Demand analysis [Record32]: alloc=6041641560 time=3288.244
-Worker Wrapper binds [Record32]: alloc=184167736 time=333.958
-Simplifier [Record32]: alloc=17938051968 time=21736.444
-Exitification transformation [Record32]: alloc=13208 time=0.010
-Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True}) [Record32]: alloc=4403068184 time=4238.404
-Common sub-expression [Record32]: alloc=12504 time=0.020
-Float inwards [Record32]: alloc=12416 time=0.017
-Simplifier [Record32]: alloc=13889406104 time=18758.648
-Demand analysis [Record32]: alloc=3651133560 time=1768.733
-CoreTidy [Record32]: alloc=944583256 time=822.834
-CorePrep [Record32]: alloc=10600 time=0.032
-CodeGen [Record32]: alloc=19265709480 time=11761.421
-CorePrep [Record32]: alloc=10600 time=0.032
-CodeGen [Record32]: alloc=20408993344 time=12190.419
+Parser [Record32]: alloc=12525168 time=8.215
+Renamer/typechecker [Record32]: alloc=916192000 time=520.621
+Desugar [Record32]: alloc=23647344 time=13.301
+Simplifier [Record32]: alloc=2563525920 time=2461.750
+Specialise [Record32]: alloc=9548593176 time=4333.695
+Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = False}) [Record32]: alloc=636611112 time=620.067
+Simplifier [Record32]: alloc=11215067040 time=12191.390
+Simplifier [Record32]: alloc=13870109720 time=14673.831
+Simplifier [Record32]: alloc=14110315752 time=16238.578
+Float inwards [Record32]: alloc=12416 time=0.011
+Called arity analysis [Record32]: alloc=13576 time=0.009
+Simplifier [Record32]: alloc=12901895328 time=15288.264
+Demand analysis [Record32]: alloc=3412214824 time=1796.177
+Worker Wrapper binds [Record32]: alloc=110171360 time=126.500
+Simplifier [Record32]: alloc=11580286456 time=11140.472
+Exitification transformation [Record32]: alloc=13208 time=0.012
+Float out(FOS {Lam = Just 0, Consts = True, OverSatApps = True}) [Record32]: alloc=2513409928 time=4789.068
+Common sub-expression [Record32]: alloc=12504 time=0.010
+Float inwards [Record32]: alloc=12416 time=0.012
+Simplifier [Record32]: alloc=9410147520 time=9195.767
+Demand analysis [Record32]: alloc=2121005720 time=1088.201
+CoreTidy [Record32]: alloc=486177648 time=386.072
+CorePrep [Record32]: alloc=10600 time=0.024
+CodeGen [Record32]: alloc=6541258896 time=4166.720
+CorePrep [Record32]: alloc=10600 time=0.023
+CodeGen [Record32]: alloc=6922256688 time=5509.601
 ```
