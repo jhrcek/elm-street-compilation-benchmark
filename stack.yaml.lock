@@ -5,15 +5,15 @@
 
 packages:
 - completed:
-    hackage: elm-street-0.1.0.3@sha256:1fe5caa78ed3900f16943cc2a8775068c0d4b7f04e98ac7b456121a89e401c3c,4439
+    hackage: elm-street-0.1.0.4@sha256:9a57d0c42940694a4667278b52a060892e955111e6a197e9afcd7beca5193940,4439
     pantry-tree:
       size: 1190
-      sha256: 178b1f2d1cf687bf1caf0f791330307c6aec40b3e30fc31c06ca5083ceb07758
+      sha256: eac67d9b492d86cf6fdfe0eea8084e24729ac5f1318801d435bb843a3210e1e1
   original:
-    hackage: elm-street-0.1.0.3@sha256:1fe5caa78ed3900f16943cc2a8775068c0d4b7f04e98ac7b456121a89e401c3c,4439
+    hackage: elm-street-0.1.0.4@sha256:9a57d0c42940694a4667278b52a060892e955111e6a197e9afcd7beca5193940,4439
 snapshots:
 - completed:
-    size: 532177
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/20.yaml
-    sha256: 0e14ba5603f01e8496e8984fd84b545a012ca723f51a098c6c9d3694e404dc6d
-  original: lts-16.20
+    size: 586110
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/21.yaml
+    sha256: ce4fb8d44f3c6c6032060a02e0ebb1bd29937c9a70101c1517b92a87d9515160
+  original: lts-18.21

@@ -1,6 +1,6 @@
 #!/usr/bin/env stack
 {- stack script
---resolver lts-16.20
+--resolver lts-18.21
 --package conduit
 --package text
 --package containers
@@ -13,15 +13,16 @@ import Data.Char (isDigit)
 import Data.Foldable (for_)
 import Data.List (isSuffixOf, sortOn)
 import Data.Map.Strict (Map)
-import qualified Data.Map.Strict as Map
 import Data.Monoid (Sum (..))
 import Data.Ord (Down (..))
 import Data.Text (Text)
-import qualified Data.Text as Text
-import qualified Data.Text.IO as Text
 import Data.Text.Read (decimal, double)
 import System.Environment (getArgs)
 import Text.Printf (printf)
+
+import qualified Data.Map.Strict as Map
+import qualified Data.Text as Text
+import qualified Data.Text.IO as Text
 
 getBuildDir :: IO FilePath
 getBuildDir = do

@@ -1,6 +1,6 @@
 #!/usr/bin/env stack
 {- stack script
---resolver lts-16.20
+--resolver lts-18.21
 -}
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -Wall #-}
