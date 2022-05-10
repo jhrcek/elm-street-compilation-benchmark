@@ -15,12 +15,17 @@ main = do
 
 genModule :: Int -> IO ()
 genModule i = writeFile (printf "src/Record%02d.hs" i) $ unlines $
-    [ "{-# LANGUAGE DeriveGeneric, DerivingVia #-}"
+    [ "{-# LANGUAGE DeriveGeneric #-}"
     , printf "module Record%02d where" i
-    , "import Data.Aeson (FromJSON, ToJSON)"
-    , "import Elm (Elm, ElmStreet (ElmStreet))"
-    , "import GHC.Generics (Generic)"
+    , "import Data.Aeson (FromJSON, ToJSON, parseJSON, toJSON)"
+    , "import Elm (Elm, elmStreetParseJson, elmStreetToJson, genericToElmDefinition, toElmDefinition)"
+    , "import GHC.Generics (Generic, from)"
     , ""
-    ] <> fmap
-    (\n -> printf "data B%02d = B%02d{ myUnit%02d::(), myInt%02d::Int, myDouble%02d::Double, myFloat%02d::Float, myBool%02d::Bool, myList%02d::[Int], myString%02d::String } deriving stock Generic deriving (Elm, ToJSON, FromJSON) via ElmStreet B%02d" n n n n n n n n n n)
-    [1..i]
+    ] <> fmap 
+      (\n -> unlines
+            [ printf "data B%02d = B%02d{ myUnit%02d::(), myInt%02d::Int, myDouble%02d::Double, myFloat%02d::Float, myBool%02d::Bool, myList%02d::[Int], myString%02d::String } deriving Generic" n n n n n n n n n
+            , printf "instance Elm B%02d where toElmDefinition _ = genericToElmDefinition $ GHC.Generics.from (error \"Proxy for generic elm was evaluated\" :: B%02d)" n n
+            , printf "instance ToJSON B%02d where toJSON = elmStreetToJson" n
+            , printf "instance FromJSON B%02d where parseJSON = elmStreetParseJson" n
+            ])
+      [1..i]
